@@ -10,8 +10,6 @@ export default {
     },
     devServer: {
         static: './dist',
-        hot: false,
-        client: false,
     },
     mode: 'development',
     output: {

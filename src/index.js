@@ -6,25 +6,12 @@ import data from './data.js'
 const myChart = echarts.init(document.getElementById('container'));
 echarts.registerMap('china', chinaMap);
 const option = {
-    color: [
-        '#c23531',
-        '#2f4554',
-        '#61a0a8',
-        '#d48265',
-        '#91c7ae',
-        '#749f83',
-        '#ca8622',
-        '#bda29a',
-        '#6e7074',
-        '#546570',
-        '#c4ccd3'
-    ],
     title: {
-        text: '企业地域分布',
+        text: '公司数量地域分布',
         x: "center",
         y: "50px",
         textStyle: {
-            fontSize: 22,
+            fontSize: 44,
             color: "black",
         },
     },
@@ -34,38 +21,45 @@ const option = {
     },
     tooltip: {
         trigger: 'item',
-        backgroundColor: "skyblue",
-        formatter: '地区：{b}<br/>数量：{c}',
+        backgroundColor: "#FFD700",
+        formatter: '地区：{b}<br/>公司数量：{c}',
     },
     visualMap: {
+        type: 'continuous',
+        hoverLink:true,
+        dimension: 1,
         bottom: '12%',
-        left: 'left',
+        left: '5%',
         min: 0,
         max: 50,
         text: ['最高', '最低'],
-        realtime: false,
+        // realtime: true,
         calculable: true,
-        // inRange: {
-        //     color: ['white', 'yellow', 'red'],
-        //     symbolSize: [0, 50]
-        // }
+        inRange: {
+            color: ['white', 'skyblue', 'blue'],
+            symbolSize: [0, 50]
+        },
+        emphasis: {
+            focus: 'self',
+        },
     },
     series: [
         {
             name: '公司数量',
             type: 'map',
-            // colorBy: 'data',
+            colorBy: 'data',
             label: {
                 show: true,
                 position: 'inside',
             },
-            select: {
+            color: ['white', 'yellow', 'red'],
+            emphasis: {
                 itemStyle: {
-                    color: 'green'
+                    color: 'blue'
                 }
             },
             map: 'china',
-            datasetIndex: 0,
+            // datasetIndex: 0,
         },
     ],
     dataset: {
